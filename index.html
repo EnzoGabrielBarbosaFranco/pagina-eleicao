@@ -100,8 +100,13 @@
     .newsroom-brand small { color: var(--ink-muted); font-family: var(--body); font-size: .65rem; font-weight: 600; }
     .fake-kicker { width: 85px; height: 7px; margin-top: 22px; border-radius: 10px; background: var(--mint-strong); }
     .fake-headline { width: 88%; height: 17px; margin-top: 13px; border-radius: 4px; background: var(--ink); box-shadow: 0 26px 0 #d9dfdc; }
-    .widget-frame { position: relative; margin-top: 34px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); }
-    .widget-frame iframe { display: block; width: 100%; height: 355px; border: 0; background: transparent; }
+    .widget-frame { position: relative; height: 355px; margin-top: 34px; overflow-x: hidden; overflow-y: auto; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
+    .widget-frame iframe { display: block; width: 100%; height: 2100px; border: 0; background: transparent; }
+    .widget-frame::-webkit-scrollbar, .live-widget::-webkit-scrollbar { width: 5px; height: 5px; }
+    .widget-frame::-webkit-scrollbar-track, .live-widget::-webkit-scrollbar-track { background: transparent; }
+    .widget-frame::-webkit-scrollbar-thumb, .live-widget::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(16,40,68,.35); }
+    .widget-frame::-webkit-scrollbar-thumb:hover, .live-widget::-webkit-scrollbar-thumb:hover { background: rgba(16,40,68,.58); }
+    .widget-frame:focus-visible, .live-widget:focus-visible { outline: 3px solid var(--mint-strong); outline-offset: 3px; }
     .proof-bar { position: relative; z-index: 2; border-block: 1px solid var(--line); background: var(--white); }
     .proof-grid { display: grid; grid-template-columns: 1.25fr repeat(3, 1fr); align-items: stretch; }
     .proof-item { min-height: 130px; display: flex; flex-direction: column; justify-content: center; padding: 25px 32px; border-left: 1px solid var(--line); }
@@ -131,14 +136,14 @@
     .editorial-preview { padding: 26px; background: #f0f3f1; }
     .article-line { height: 8px; margin-bottom: 9px; border-radius: 8px; background: #d9dfdc; }
     .article-line:nth-child(2) { width: 73%; }
-    .live-widget { position: relative; margin: 22px 0; overflow: hidden; border-radius: 11px; background: var(--white); box-shadow: 0 12px 28px rgba(7,24,45,.09); }
+    .live-widget { position: relative; margin: 22px 0; overflow: auto; border-radius: 11px; background: var(--white); box-shadow: 0 12px 28px rgba(7,24,45,.09); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
     .live-widget iframe { display: block; width: 100%; border: 0; background: transparent; }
     .horizontal-preview { padding: 22px 20px; background: #e8ecea; }
-    .live-widget--horizontal { width: 100%; margin: 0; }
-    .live-widget--horizontal iframe { height: 120px; }
+    .live-widget--horizontal { width: 100%; height: 120px; margin: 0; overflow: hidden; }
+    .live-widget--horizontal iframe { width: 100%; max-width: 100%; height: 120px; }
     .standard-preview { display: grid; place-items: center; padding: 34px; background: linear-gradient(145deg, #e7ece9, #f7f9f8); }
-    .live-widget--standard { width: min(720px, 100%); height: 680px; margin: 0 auto; }
-    .live-widget--standard iframe { height: 680px; }
+    .live-widget--standard { width: min(720px, 100%); height: 680px; margin: 0 auto; overflow-x: hidden; overflow-y: auto; }
+    .live-widget--standard iframe { height: 2100px; }
     .sidebar-preview { display: grid; place-items: center; min-height: 390px; padding: 28px; background: #e8ecea; }
     .sidebar-preview--tower { min-height: 680px; background: linear-gradient(145deg, #dbe4df, #f0f4f2); }
     .sidebar-page { width: 100%; max-width: 310px; padding: 5px; border-radius: 13px; background: rgba(255,255,255,.55); }
@@ -243,7 +248,8 @@
       .newsroom-brand small { display: none; }
       .fake-headline { width: 94%; }
       .widget-frame { margin-top: 32px; }
-      .widget-frame iframe { height: 430px; }
+      .widget-frame { height: 430px; }
+      .widget-frame iframe { height: 2100px; }
       .proof-grid { grid-template-columns: 1fr 1fr; }
       .proof-item { min-height: 108px; padding: 22px 14px; border-top: 1px solid var(--line); }
       .proof-item:nth-child(odd) { border-left: 0; }
@@ -257,9 +263,11 @@
       .format-card__head { padding: 17px; }
       .editorial-preview { padding: 16px; }
       .horizontal-preview { padding: 16px; }
-      .live-widget--horizontal iframe { height: 360px; }
+      .live-widget--horizontal { height: 360px; }
+      .live-widget--horizontal iframe { width: 100%; height: 360px; }
       .standard-preview { padding: 12px; }
-      .live-widget--standard, .live-widget--standard iframe { height: 620px; }
+      .live-widget--standard { height: 620px; }
+      .live-widget--standard iframe { height: 2100px; }
       .sidebar-preview { min-height: 340px; padding: 20px 8px; overflow: hidden; }
       .sidebar-preview--tower { min-height: 640px; }
       .format-card__foot { align-items: start; flex-direction: column; }
@@ -312,7 +320,7 @@
             <div class="newsroom">
               <div class="newsroom-brand"><span>JORNAL DO CENTRO</span><small>Política · Eleições 2026</small></div>
               <div class="fake-kicker" aria-hidden="true"></div><div class="fake-headline" aria-hidden="true"></div>
-              <div class="widget-frame"><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Painel completo de apuração eleitoral" loading="eager" scrolling="no"></iframe></div>
+              <div class="widget-frame" tabindex="0" aria-label="Painel completo rolável. Use a roda do mouse ou as setas para ver todos os dados."><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Painel completo de apuração eleitoral" loading="eager" scrolling="no"></iframe></div>
             </div>
           </div>
         </div>
@@ -340,19 +348,19 @@
 
             <article class="format-card format-card--standard">
               <header class="format-card__head"><div><h3>Painel completo</h3><p>A experiência mais rica para páginas especiais de eleição</p></div><span class="size-badge">Até 720px de largura</span></header>
-              <div class="standard-preview"><div class="live-widget live-widget--standard"><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do painel completo de apuração" loading="lazy"></iframe></div></div>
+              <div class="standard-preview"><div class="live-widget live-widget--standard" tabindex="0" aria-label="Painel completo rolável. Use a roda do mouse ou as setas para ver todos os candidatos."><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do painel completo de apuração" loading="lazy" scrolling="no"></iframe></div></div>
               <footer class="format-card__foot"><span>Resultados, estatísticas e lista completa de candidatos</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br&quot; width=&quot;100%&quot; height=&quot;760&quot; style=&quot;border:0&quot; title=&quot;Painel completo de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
             </article>
 
             <article class="format-card format-card--rectangle">
               <header class="format-card__head"><div><h3>Retângulo 300×250</h3><p>Para sidebar, meio de matéria e módulos editoriais</p></div><span class="size-badge">300 × 250px</span></header>
-              <div class="sidebar-preview"><div class="sidebar-page"><div class="live-widget live-widget--sidebar"><iframe src="https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget lateral de apuração" loading="lazy" scrolling="no"></iframe></div></div></div>
+              <div class="sidebar-preview"><div class="sidebar-page"><div class="live-widget live-widget--sidebar"><iframe src="https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget lateral de apuração com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
               <footer class="format-card__foot"><span>Padrão IAB · presença compacta</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp&quot; width=&quot;300&quot; height=&quot;250&quot; style=&quot;border:0&quot; scrolling=&quot;no&quot; title=&quot;Widget 300 por 250 de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
             </article>
 
             <article class="format-card format-card--tower">
               <header class="format-card__head"><div><h3>Arranha-céu 300×600</h3><p>Mais informação e permanência na coluna lateral</p></div><span class="size-badge">300 × 600px</span></header>
-              <div class="sidebar-preview sidebar-preview--tower"><div class="sidebar-page"><div class="live-widget live-widget--tower"><iframe src="https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget 300 por 600 de apuração" loading="lazy" scrolling="no"></iframe></div></div></div>
+              <div class="sidebar-preview sidebar-preview--tower"><div class="sidebar-page"><div class="live-widget live-widget--tower"><iframe src="https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget 300 por 600 com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
               <footer class="format-card__foot"><span>Destaque vertical · cobertura aprofundada</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp&quot; width=&quot;300&quot; height=&quot;600&quot; style=&quot;border:0&quot; scrolling=&quot;no&quot; title=&quot;Widget 300 por 600 de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
             </article>
           </div>
