@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Widgets de apuração eleitoral em tempo real para portais de notícias. Instalação simples, atualização automática e design responsivo.">
   <meta name="theme-color" content="#07182d">
-  <title>EleiçõesWidget Pro | Apuração eleitoral no seu portal</title>
+  <title>Painel Eleitoral | Apuração eleitoral no seu portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -91,22 +91,17 @@
     .trust-avatar { display: grid; width: 34px; height: 34px; margin-right: -8px; place-items: center; border: 2px solid var(--paper); border-radius: 50%; background: var(--ink); color: var(--mint); font-size: .68rem; font-weight: 800; }
     .product-stage { position: relative; min-width: 0; }
     .stage-orbit { position: absolute; inset: -40px -60px; border: 1px solid rgba(7, 24, 45, .11); border-radius: 50%; transform: rotate(-8deg); }
-    .browser { position: relative; overflow: hidden; border: 1px solid rgba(7, 24, 45, .12); border-radius: 22px; background: var(--white); box-shadow: var(--shadow-lg); transform: rotate(1deg); }
+    .browser { position: relative; overflow: hidden; border: 1px solid rgba(7, 24, 45, .12); border-radius: 22px; background: var(--white); box-shadow: var(--shadow-lg); }
     .browser-bar { height: 47px; display: flex; align-items: center; gap: 7px; padding: 0 17px; border-bottom: 1px solid var(--line); background: #edf1ef; }
     .browser-dot { width: 9px; height: 9px; border-radius: 50%; background: #c6cfca; }
     .browser-address { flex: 1; max-width: 250px; height: 23px; margin-inline: auto; border: 1px solid #dce3df; border-radius: 7px; background: var(--white); }
-    .newsroom { padding: 26px; }
+    .newsroom { padding: 24px 14px; }
     .newsroom-brand { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 2px solid var(--ink); font-family: var(--display); font-weight: 800; }
     .newsroom-brand small { color: var(--ink-muted); font-family: var(--body); font-size: .65rem; font-weight: 600; }
     .fake-kicker { width: 85px; height: 7px; margin-top: 22px; border-radius: 10px; background: var(--mint-strong); }
     .fake-headline { width: 88%; height: 17px; margin-top: 13px; border-radius: 4px; background: var(--ink); box-shadow: 0 26px 0 #d9dfdc; }
     .widget-frame { position: relative; margin-top: 34px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); }
-    .widget-frame iframe { display: block; width: 100%; height: 318px; border: 0; background: transparent; }
-    .floating-metric { position: absolute; right: -26px; bottom: -30px; width: 190px; padding: 18px; border: 1px solid var(--line-dark); border-radius: 18px; background: var(--ink); color: var(--white); box-shadow: 0 22px 45px rgba(7,24,45,.28); transform: rotate(-3deg); }
-    .metric-top { display: flex; align-items: center; justify-content: space-between; color: #9fb0c4; font-size: .67rem; text-transform: uppercase; letter-spacing: .08em; }
-    .metric-value { margin-top: 9px; font-family: var(--display); font-size: 1.6rem; font-weight: 800; }
-    .metric-chart { display: flex; align-items: end; gap: 5px; height: 34px; margin-top: 10px; }
-    .metric-chart i { flex: 1; height: var(--h); border-radius: 3px 3px 0 0; background: var(--mint); opacity: var(--o, 1); }
+    .widget-frame iframe { display: block; width: 100%; height: 355px; border: 0; background: transparent; }
     .proof-bar { position: relative; z-index: 2; border-block: 1px solid var(--line); background: var(--white); }
     .proof-grid { display: grid; grid-template-columns: 1.25fr repeat(3, 1fr); align-items: stretch; }
     .proof-item { min-height: 130px; display: flex; flex-direction: column; justify-content: center; padding: 25px 32px; border-left: 1px solid var(--line); }
@@ -138,9 +133,9 @@
     .article-line:nth-child(2) { width: 73%; }
     .live-widget { position: relative; margin: 22px 0; overflow: hidden; border-radius: 11px; background: var(--white); box-shadow: 0 12px 28px rgba(7,24,45,.09); }
     .live-widget iframe { display: block; width: 100%; border: 0; background: transparent; }
-    .horizontal-preview { padding: 30px 26px; background: #e8ecea; }
+    .horizontal-preview { padding: 22px 20px; background: #e8ecea; }
     .live-widget--horizontal { width: 100%; margin: 0; }
-    .live-widget--horizontal iframe { height: 96px; }
+    .live-widget--horizontal iframe { height: 120px; }
     .standard-preview { display: grid; place-items: center; padding: 34px; background: linear-gradient(145deg, #e7ece9, #f7f9f8); }
     .live-widget--standard { width: min(720px, 100%); height: 680px; margin: 0 auto; }
     .live-widget--standard iframe { height: 680px; }
@@ -242,7 +237,7 @@
       .hero-actions { align-items: stretch; flex-direction: column; }
       .hero-actions .button { width: 100%; }
       .trust-line { align-items: start; }
-      .stage-orbit, .floating-metric { display: none; }
+      .stage-orbit { display: none; }
       .browser { border-radius: 16px; transform: none; }
       .newsroom { padding: 18px 14px; }
       .newsroom-brand small { display: none; }
@@ -290,7 +285,7 @@
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
   <header class="site-header" id="topo">
     <div class="container nav">
-      <a class="brand" href="#topo" aria-label="EleiçõesWidget Pro — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">EleiçõesWidget <small>Dados que prendem a atenção</small></span></a>
+      <a class="brand" href="#topo" aria-label="Painel Eleitoral — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral <small>Dados que prendem a atenção</small></span></a>
       <nav class="nav-links" aria-label="Navegação principal"><a class="nav-link" href="#formatos">Formatos</a><a class="nav-link" href="#beneficios">Benefícios</a><a class="nav-link" href="#instalacao">Como funciona</a><a class="nav-link" href="#duvidas">Dúvidas</a></nav>
       <a class="button" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar com consultor no WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg><span>Falar com consultor</span>
@@ -317,10 +312,9 @@
             <div class="newsroom">
               <div class="newsroom-brand"><span>JORNAL DO CENTRO</span><small>Política · Eleições 2026</small></div>
               <div class="fake-kicker" aria-hidden="true"></div><div class="fake-headline" aria-hidden="true"></div>
-              <div class="widget-frame"><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Painel completo de apuração eleitoral" loading="eager"></iframe></div>
+              <div class="widget-frame"><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Painel completo de apuração eleitoral" loading="eager" scrolling="no"></iframe></div>
             </div>
           </div>
-          <aside class="floating-metric" aria-label="Indicador ilustrativo de engajamento"><div class="metric-top"><span>Engajamento</span><span>Ao vivo</span></div><div class="metric-value">+ tempo no site</div><div class="metric-chart" aria-hidden="true"><i style="--h:25%;--o:.35"></i><i style="--h:42%;--o:.45"></i><i style="--h:38%;--o:.55"></i><i style="--h:62%;--o:.7"></i><i style="--h:72%;--o:.82"></i><i style="--h:100%"></i></div></aside>
         </div>
       </div>
     </section>
@@ -402,7 +396,7 @@
       <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/5500000000000?text=Olá!%20Quero%20uma%20proposta%20do%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div>
     </section>
   </main>
-  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">EleiçõesWidget</span></a><span>© 2026 EleiçõesWidget Pro. Todos os direitos reservados.</span><div class="footer-links"><a href="#">Privacidade</a><a href="#">Termos de uso</a></div></div></footer>
+  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral</span></a><span>© 2026 Painel Eleitoral. Todos os direitos reservados.</span><div class="footer-links"><a href="#">Privacidade</a><a href="#">Termos de uso</a></div></div></footer>
   <a class="mobile-cta" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg></a>
   <script>
     const header = document.querySelector('.site-header');
