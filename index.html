@@ -72,8 +72,10 @@
     .brand-name { line-height: 1.05; letter-spacing: -.025em; }
     .brand-name small { display: block; margin-top: 4px; color: var(--ink-muted); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-link { color: var(--ink-soft); font-size: .9rem; font-weight: 700; }
-    .nav-link:hover { color: var(--mint-dark); }
+    .nav-link { position: relative; padding-block: 8px; color: var(--ink-soft); font-size: .95rem; font-weight: 700; transition: color .25s ease; }
+    .nav-link::after { content: ""; position: absolute; right: 0; bottom: 2px; left: 0; height: 2px; border-radius: 999px; background: var(--mint-dark); transform: scaleX(0); transform-origin: center; transition: transform .25s ease; }
+    .nav-link:hover, .nav-link.is-active { color: var(--mint-dark); }
+    .nav-link.is-active::after { transform: scaleX(1); }
     .site-header .button { min-height: 44px; padding-inline: 18px; background: var(--ink); color: var(--white); }
     .hero { position: relative; min-height: 860px; overflow: hidden; padding: 150px 0 88px; background: radial-gradient(circle at 85% 18%, rgba(207, 234, 255, .9), transparent 25%), radial-gradient(circle at 15% 75%, rgba(156, 242, 207, .45), transparent 26%), var(--paper); }
     .hero::before { content: ""; position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(rgba(7, 24, 45, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 24, 45, .08) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
@@ -115,6 +117,34 @@
     .proof-label { color: var(--ink-muted); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .proof-value { margin-top: 4px; font-family: var(--display); font-size: 1.3rem; font-weight: 800; letter-spacing: -.035em; }
     .proof-value strong { color: var(--mint-dark); }
+    .attention { position: relative; overflow: hidden; padding: 110px 0; background: linear-gradient(145deg, #e9f1ed 0%, var(--paper) 62%); }
+    .attention::before { content: ""; position: absolute; inset: 0; opacity: .28; background-image: radial-gradient(rgba(7,24,45,.14) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(90deg, black, transparent 58%); }
+    .attention .container { position: relative; }
+    .attention-head { display: grid; grid-template-columns: 1.1fr .9fr; align-items: end; gap: 70px; margin-bottom: 46px; }
+    .attention-head .section-copy { margin: 0; justify-self: end; }
+    .attention-grid { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: 18px; }
+    .attention-card { min-width: 0; min-height: 310px; display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.86); box-shadow: var(--shadow-sm); }
+    .attention-card--feature { padding: 34px; border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .attention-kicker { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--ink-muted); font-size: .69rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    .attention-card--feature .attention-kicker { color: #9eb0c1; }
+    .attention-kicker::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .22; }
+    .attention-number { min-height: 82px; display: flex; align-items: flex-start; margin: 40px 0 20px; color: var(--mint-dark); font-family: var(--display); font-size: clamp(3.2rem, 5.5vw, 5.15rem); font-weight: 800; letter-spacing: -.075em; line-height: .9; white-space: nowrap; }
+    .attention-card--feature .attention-number { color: var(--mint); }
+    .attention-number--text { flex-direction: column; justify-content: flex-start; gap: 7px; font-size: clamp(2.25rem, 3.2vw, 2.85rem); white-space: nowrap; }
+    .attention-number--text small { color: var(--ink-muted); font-family: var(--body); font-size: .66rem; font-weight: 800; letter-spacing: .12em; line-height: 1; text-transform: uppercase; }
+    .attention-card p { margin: 0; color: var(--ink-muted); font-size: .9rem; line-height: 1.55; }
+    .attention-card--feature p { color: #b9c7d3; }
+    .data-source { display: inline-flex; align-items: center; gap: 6px; width: fit-content; margin-top: 20px; color: var(--mint-dark); font-size: .72rem; font-weight: 800; text-decoration: none; }
+    .attention-card--feature .data-source { color: var(--mint); }
+    .attention-card > .data-source { margin-top: auto; padding-top: 20px; }
+    .data-source:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 18px; }
+    .case-card { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 24px; padding: 24px 28px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.72); }
+    .case-number { min-width: 126px; color: var(--ink); font-family: var(--display); font-size: 2.65rem; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
+    .case-card h3 { margin: 0 0 5px; font-family: var(--display); font-size: 1rem; letter-spacing: -.02em; }
+    .case-card p { margin: 0; color: var(--ink-muted); font-size: .8rem; line-height: 1.5; }
+    .case-card .data-source { margin-top: 9px; }
+    .attention-note { max-width: 900px; margin: 20px 0 0; color: var(--ink-muted); font-size: .73rem; }
     .studio { padding: 110px 0; background: var(--ink); color: var(--white); }
     .studio .section-title { max-width: 720px; }
     .studio .section-copy { color: #aebdca; }
@@ -206,7 +236,6 @@
     .cta-signal-live { display: inline-flex; align-items: center; gap: 7px; color: var(--mint); }
     .cta-signal-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--mint-strong); box-shadow: 0 0 0 4px rgba(35,201,140,.12); }
     .cta-bars { position: relative; overflow: hidden; height: 42px; margin-top: 10px; display: flex; align-items: end; gap: 7px; }
-    .cta-bars::after { content: ""; position: absolute; inset: 0 auto 0 -48px; width: 42px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); animation: data-scan 3.4s linear infinite; pointer-events: none; }
     .cta-bars span { flex: 1; min-height: 8px; border-radius: 4px 4px 2px 2px; background: linear-gradient(to top, rgba(35,201,140,.42), var(--mint)); transform-origin: center bottom; will-change: transform; }
     .cta-bars span:nth-child(1) { --bar-min: .55; --bar-max: 1.65; --bar-speed: 1.35s; --bar-delay: -.8s; height: 24%; opacity: .46; }
     .cta-bars span:nth-child(2) { --bar-min: .48; --bar-max: 1.38; --bar-speed: 1.7s; --bar-delay: -1.3s; height: 38%; opacity: .56; }
@@ -225,8 +254,8 @@
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.is-visible { opacity: 1; transform: none; }
     @keyframes pulse { 50% { opacity: .45; transform: scale(.8); } }
-    @keyframes data-scan { to { transform: translateX(310px); } }
     @media (max-width: 1000px) {
+      .attention-number {margin: 40px 0 0px;}
       .nav-links { display: none; }
       .hero { min-height: auto; }
       .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 65px; }
@@ -235,6 +264,10 @@
       .proof-grid { grid-template-columns: repeat(2, 1fr); }
       .proof-item:nth-child(3) { border-left: 0; }
       .proof-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .attention-head { grid-template-columns: 1fr; gap: 22px; }
+      .attention-head .section-copy { justify-self: start; }
+      .attention-grid { grid-template-columns: 1fr 1fr; }
+      .attention-card--feature { grid-column: 1 / -1; }
       .studio-canvas { grid-template-columns: minmax(0, 1fr); }
       .format-card--wide, .format-card--standard, .format-card--rectangle, .format-card--tower { grid-column: 1 / -1; }
       .format-card--rectangle, .format-card--tower { width: min(620px, 100%); margin-inline: auto; }
@@ -273,6 +306,12 @@
       .proof-item:first-child { padding-left: 14px; }
       .proof-item:first-child, .proof-item:nth-child(2) { border-top: 0; }
       .proof-value { font-size: 1.03rem; }
+      .attention { padding: 76px 0; }
+      .attention-grid, .case-grid { grid-template-columns: 1fr; }
+      .attention-card--feature { grid-column: auto; }
+      .attention-card { min-height: 270px; padding: 25px; }
+      .case-card { grid-template-columns: 1fr; gap: 10px; padding: 23px; }
+      .case-number { min-width: 0; }
       .section-head--split { align-items: start; flex-direction: column; }
       .section-head { margin-bottom: 36px; }
       .studio, .benefits, .flow, .faq { padding: 80px 0; }
@@ -324,7 +363,7 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#topo" aria-label="Painel Eleitoral — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral <small>Dados que prendem a atenção</small></span></a>
-      <nav class="nav-links" aria-label="Navegação principal"><a class="nav-link" href="#formatos">Formatos</a><a class="nav-link" href="#beneficios">Benefícios</a><a class="nav-link" href="#instalacao">Como funciona</a><a class="nav-link" href="#duvidas">Dúvidas</a></nav>
+      <nav class="nav-links" aria-label="Navegação principal"><a class="nav-link" href="#audiencia">Audiência</a><a class="nav-link" href="#formatos">Formatos</a><a class="nav-link" href="#beneficios">Benefícios</a><a class="nav-link" href="#instalacao">Como funciona</a><a class="nav-link" href="#duvidas">Dúvidas</a></nav>
       <a class="button" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar com consultor no WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span>Falar com consultor</span>
       </a>
@@ -364,6 +403,21 @@
         <div class="proof-item"><span class="proof-label">Formatos</span><span class="proof-value">5 opções editoriais</span></div>
       </div>
     </section>
+    <section class="attention" id="audiencia" aria-labelledby="attention-title">
+      <div class="container">
+        <div class="attention-head reveal"><div><p class="eyebrow">O tamanho da oportunidade</p><h2 class="section-title" id="attention-title">Quando a eleição acontece, a atenção muda de escala.</h2></div><p class="section-copy">Usamos 2022, a eleição geral mais recente, como referência pública do comportamento dos brasileiros nos dias de votação, quando resultados ao vivo estiveram no centro da procura.</p></div>
+        <div class="attention-grid">
+          <article class="attention-card attention-card--feature reveal"><span class="attention-kicker">Busca no Brasil · 2022</span><strong class="attention-number">≈30%</strong><p>Nos dias do primeiro e do segundo turnos, o recurso de resultados eleitorais representou aproximadamente 30% do tráfego de pesquisa na Busca do Google no Brasil.</p><a class="data-source" href="https://blog.google/intl/pt-br/novidades/iniciativas/nosso-trabalho-nas-eleicoes-brasileiras-de-2022/" target="_blank" rel="noopener noreferrer">Consultar no Google Brasil ↗</a></article>
+          <article class="attention-card reveal"><span class="attention-kicker">Alcance oficial</span><strong class="attention-number">≈240 mi</strong><p>Os recursos eleitorais disponibilizados pelo Google em parceria com o TSE foram vistos quase 240 milhões de vezes durante o primeiro e o segundo turnos.</p><a class="data-source" href="https://blog.google/intl/pt-br/novidades/iniciativas/nosso-trabalho-nas-eleicoes-brasileiras-de-2022/" target="_blank" rel="noopener noreferrer">Ver a fonte ↗</a></article>
+          <article class="attention-card reveal"><span class="attention-kicker">Interesse nacional</span><strong class="attention-number attention-number--text"><span>Pico histórico</span><small>observado em 2022</small></strong><p>Na eleição geral mais recente, o tema atingiu o maior interesse já registrado pelo Google no Brasil desde o início da série histórica, em 2004.</p><a class="data-source" href="https://blog.google/intl/pt-br/novidades/iniciativas/nosso-trabalho-nas-eleicoes-brasileiras-de-2022/" target="_blank" rel="noopener noreferrer">Ver a publicação ↗</a></article>
+        </div>
+        <div class="case-grid">
+          <article class="case-card reveal"><strong class="case-number">+381%</strong><div><h3>Um caso documentado de crescimento</h3><p>O Poder360 registrou alta de 381% em visitantes únicos em outubro de 2022 contra outubro de 2021, segundo dados da Comscore divulgados pelo veículo.</p><a class="data-source" href="https://www.poder360.com.br/poder360/poder360-tem-recorde-de-178-milhoes-de-leitores-em-outubro/" target="_blank" rel="noopener noreferrer">Consultar Poder360/Comscore ↗</a></div></article>
+          <article class="case-card reveal"><strong class="case-number">47,5 mi</strong><div><h3>Resultados ao vivo geram consumo</h3><p>O placar de apuração do Terra somou mais de 47,5 milhões de visualizações nos dois turnos; o portal informou recorde mensal de audiência em outubro.</p><a class="data-source" href="https://www.terra.com.br/nossaterra/sala-de-imprensa/terra-registra-recorde-de-audiencia-com-a-cobertura-das-eleicoes-2022%2C1689a0f6c14a39ed79b1a680ad6104ce1wj3feyh.html" target="_blank" rel="noopener noreferrer">Consultar no Terra ↗</a></div></article>
+        </div>
+        <p class="attention-note reveal">A eleição geral de 2022 é utilizada como a referência nacional mais recente disponível. Os resultados de Poder360 e Terra são casos individuais divulgados pelos respectivos veículos e não representam uma média de crescimento de todo o mercado nem uma projeção para a próxima eleição.</p>
+      </div>
+    </section>
     <section class="studio" id="formatos" aria-labelledby="studio-title">
       <div class="container">
         <div class="section-head section-head--split reveal"><div><p class="eyebrow eyebrow--light">Demonstração ao vivo</p><h2 class="section-title" id="studio-title">Cinco formatos para cada ponto da sua cobertura.</h2></div><p class="section-copy">Veja os widgets em suas proporções corretas. O conteúdo abaixo é carregado diretamente da plataforma.</p></div>
@@ -401,27 +455,27 @@
             </article>
           </div>
         </div>
-        <p class="studio-note reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 16v-4M12 8h.01"/></svg>Cada formato mantém sua proporção real. Cargo, turno e estado são configurados na tag do seu portal.</p>
+        <p class="studio-note reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 16v-4M12 8h.01"/></svg>Cada formato mantém sua proporção real. Você recebe o código pronto para publicar, sem configuração manual.</p>
       </div>
     </section>
     <section class="benefits" id="beneficios" aria-labelledby="benefits-title">
       <div class="container">
         <div class="section-head reveal"><p class="eyebrow">O que você ganha</p><h2 class="section-title" id="benefits-title">Tecnologia invisível. Resultado editorial visível.</h2><p class="section-copy">Você cuida da cobertura. A plataforma cuida de entregar a informação atualizada com estabilidade e boa apresentação.</p></div>
         <div class="benefit-grid">
-          <article class="benefit-card benefit-card--dark reveal"><span class="benefit-number" aria-hidden="true">01</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"/></svg></div><h3>Dados atualizados sem operação manual</h3><p>O resultado chega ao widget automaticamente. Sua equipe não precisa publicar números, atualizar gráficos ou recarregar páginas.</p></article>
-          <article class="benefit-card reveal"><span class="benefit-number" aria-hidden="true">02</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Carregamento independente</h3><p>O conteúdo roda em iframe isolado e assíncrono, preservando a navegação do portal mesmo nos picos de acesso.</p></article>
-          <article class="benefit-card reveal"><span class="benefit-number" aria-hidden="true">03</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Licença protegida por domínio</h3><p>A tag é liberada para o endereço contratado e bloqueia o uso não autorizado em sites de terceiros.</p></article>
-          <article class="benefit-card benefit-card--mint reveal"><span class="benefit-number" aria-hidden="true">04</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Boa leitura em qualquer tela</h3><p>Desktop, tablet ou celular: os formatos mantêm contraste, hierarquia e informação visível em toda a jornada do leitor.</p></article>
+          <article class="benefit-card benefit-card--dark reveal"><span class="benefit-number" aria-hidden="true">01</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"/></svg></div><h3>Dados atualizados sem operação manual</h3><p>O resultado chega ao widget automaticamente. Sua equipe não precisa publicar números, atualizar gráficos ou recarregar páginas.</p></article>
+          <article class="benefit-card reveal"><span class="benefit-number" aria-hidden="true">02</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Carregamento independente</h3><p>O conteúdo roda em iframe isolado e assíncrono, preservando a navegação do portal mesmo nos picos de acesso.</p></article>
+          <article class="benefit-card reveal"><span class="benefit-number" aria-hidden="true">03</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Licença protegida por domínio</h3><p>A tag é liberada para o endereço contratado e bloqueia o uso não autorizado em sites de terceiros.</p></article>
+          <article class="benefit-card benefit-card--mint reveal"><span class="benefit-number" aria-hidden="true">04</span><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Boa leitura em qualquer tela</h3><p>Desktop, tablet ou celular: os formatos mantêm contraste, hierarquia e informação visível em toda a jornada do leitor.</p></article>
         </div>
       </div>
     </section>
     <section class="flow" id="instalacao" aria-labelledby="flow-title">
       <div class="container flow-grid">
-        <div class="flow-intro reveal"><p class="eyebrow">Sem complicação técnica</p><h2 class="section-title" id="flow-title">Da conversa ao ar em três passos.</h2><p class="section-copy">Não é um projeto de tecnologia. É uma integração simples, acompanhada e pronta para publicar.</p></div>
+        <div class="flow-intro reveal"><p class="eyebrow">Sem complicação técnica</p><h2 class="section-title" id="flow-title">Do código ao ar em poucos minutos.</h2><p class="section-copy">Você recebe tudo pronto. Basta copiar o código, colar no seu site e publicar.</p></div>
         <div class="flow-list">
-          <article class="flow-step reveal"><span class="flow-number">01</span><div><h3>Conte onde o widget será usado</h3><p>Definimos domínio, formatos, estado e cargo de acordo com a cobertura do seu veículo.</p></div></article>
-          <article class="flow-step reveal"><span class="flow-number">02</span><div><h3>Receba sua tag configurada</h3><p>Você recebe um código curto e exclusivo, acompanhado das instruções de publicação.</p></div></article>
-          <article class="flow-step reveal"><span class="flow-number">03</span><div><h3>Cole no CMS e publique</h3><p>Adicione a tag em um bloco HTML. O widget começa a funcionar no espaço escolhido.</p><div class="compatibility" aria-label="Plataformas compatíveis"><span>WordPress</span><span>Elementor</span><span>Wix</span><span>Ghost</span><span>HTML</span></div></div></article>
+          <article class="flow-step reveal"><span class="flow-number">01</span><div><h3>Receba o código pronto</h3><p>Enviamos a tag completa do widget, sem etapas extras de configuração.</p></div></article>
+          <article class="flow-step reveal"><span class="flow-number">02</span><div><h3>Cole no seu site</h3><p>Insira o código recebido em um bloco HTML da página em que deseja exibir o widget.</p></div></article>
+          <article class="flow-step reveal"><span class="flow-number">03</span><div><h3>Publique e pronto</h3><p>O widget aparece no espaço escolhido e passa a exibir as atualizações automaticamente.</p><div class="compatibility" aria-label="Plataformas compatíveis"><span>WordPress</span><span>Elementor</span><span>Wix</span><span>Ghost</span><span>HTML</span></div></div></article>
         </div>
       </div>
     </section>
@@ -431,8 +485,10 @@
         <div class="faq-list reveal">
           <details open><summary>Preciso de um desenvolvedor para instalar?</summary><p>Não. Basta inserir a tag recebida em um bloco HTML do seu CMS. Se a sua equipe já publica banners ou vídeos incorporados, o processo será familiar.</p></details>
           <details><summary>O widget deixa meu site mais lento?</summary><p>O conteúdo é carregado isoladamente em um iframe. Isso evita que o widget bloqueie o carregamento principal da página do seu portal.</p></details>
-          <details><summary>Posso escolher estado, cargo e turno?</summary><p>Sim. Esses parâmetros são configurados na tag fornecida para atender à linha editorial e à região de cobertura do seu veículo.</p></details>
+          <details><summary>Preciso configurar o widget depois de instalar?</summary><p>Não. O código é entregue pronto para uso. Você só precisa colá-lo no bloco HTML da página e publicar.</p></details>
           <details><summary>Funciona no celular?</summary><p>Sim. O painel completo, a faixa horizontal e o 970×250 reorganizam o conteúdo para telas menores. Os formatos 300×250 e 300×600 preservam suas proporções dentro do espaço disponível.</p></details>
+          <details><summary>Os resultados são atualizados automaticamente?</summary><p>Sim. As novas informações aparecem no widget sem que sua equipe precise editar números, atualizar gráficos ou republicar a página.</p></details>
+          <details><summary>Quanto tempo leva para colocar o widget no ar?</summary><p>Em geral, menos de cinco minutos. Se o seu CMS aceita blocos HTML ou conteúdo incorporado, basta colar o código recebido e publicar.</p></details>
         </div>
       </div>
     </section>
@@ -457,6 +513,28 @@
     });
     const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries, currentObserver) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); currentObserver.unobserve(entry.target); } }); }, { threshold: 0.12 }) : null;
     document.querySelectorAll('.reveal').forEach((element) => { if (observer) observer.observe(element); else element.classList.add('is-visible'); });
+    const navLinks = [...document.querySelectorAll('.nav-link[href^="#"]')];
+    const navSections = navLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const updateActiveNav = () => {
+      const readingLine = window.scrollY + window.innerHeight * .38;
+      let activeId = '';
+      navSections.forEach((section) => { if (readingLine >= section.offsetTop) activeId = section.id; });
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${activeId}`;
+        link.classList.toggle('is-active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+    let navUpdateScheduled = false;
+    const scheduleActiveNav = () => {
+      if (navUpdateScheduled) return;
+      navUpdateScheduled = true;
+      window.requestAnimationFrame(() => { updateActiveNav(); navUpdateScheduled = false; });
+    };
+    updateActiveNav();
+    window.addEventListener('scroll', scheduleActiveNav, { passive: true });
+    window.addEventListener('resize', scheduleActiveNav);
     const liveBars = [...document.querySelectorAll('.cta-bars span')];
     const barMotion = liveBars.map((_, index) => ({
       speed: .00115 + (index % 4) * .00019,
