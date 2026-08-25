@@ -6,6 +6,7 @@
   <meta name="description" content="Widgets de apuração eleitoral em tempo real para portais de notícias. Instalação simples, atualização automática e design responsivo.">
   <meta name="theme-color" content="#07182d">
   <title>Painel Eleitoral | Apuração eleitoral no seu portal</title>
+  <link rel="icon" href="./favicon.ico" sizes="any">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -53,7 +54,7 @@
     .section-head--split .section-copy { margin: 0 0 6px; max-width: 450px; }
     .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 10px; padding: 0 22px; border-radius: 999px; cursor: pointer; font-family: var(--display); font-size: .92rem; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
     .button:hover { transform: translateY(-2px); }
-    .button:focus-visible, .nav-link:focus-visible, .copy-button:focus-visible, summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    .button:focus-visible, .nav-link:focus-visible, summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
     .button--primary { background: var(--mint); color: var(--ink); box-shadow: 0 10px 28px rgba(35, 201, 140, .22); }
     .button--primary:hover { background: #b5f8dd; box-shadow: 0 14px 36px rgba(35, 201, 140, .3); }
     .button--whatsapp { background: var(--whatsapp); color: #052b18; }
@@ -141,6 +142,9 @@
     .horizontal-preview { padding: 22px 20px; background: #e8ecea; }
     .live-widget--horizontal { width: 100%; height: 120px; margin: 0; overflow: hidden; }
     .live-widget--horizontal iframe { width: 100%; max-width: 100%; height: 120px; }
+    .super-banner-preview { display: grid; place-items: center; padding: 30px 24px; background: linear-gradient(145deg, #dfe7e3, #f4f7f5); }
+    .live-widget--970 { width: min(970px, 100%); height: 250px; margin: 0 auto; overflow: hidden; }
+    .live-widget--970 iframe { width: 970px; max-width: 100%; height: 250px; }
     .standard-preview { display: grid; place-items: center; padding: 34px; background: linear-gradient(145deg, #e7ece9, #f7f9f8); }
     .live-widget--standard { width: min(720px, 100%); height: 680px; margin: 0 auto; overflow-x: hidden; overflow-y: auto; }
     .live-widget--standard iframe { height: 2100px; }
@@ -152,9 +156,6 @@
     .live-widget--tower { width: 300px; max-width: 100%; margin: 0 auto; }
     .live-widget--tower iframe { width: 300px; max-width: 100%; height: 600px; }
     .format-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 20px; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: .75rem; }
-    .copy-button { display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border-radius: 8px; background: var(--ink); color: var(--white); cursor: pointer; font-size: .72rem; font-weight: 700; }
-    .copy-button:hover { background: var(--ink-soft); }
-    .copy-button svg { width: 14px; height: 14px; }
     .studio-note { display: flex; align-items: center; gap: 10px; margin: 18px 4px 0; color: #91a4b6; font-size: .82rem; }
     .studio-note svg { flex: 0 0 auto; width: 17px; color: var(--mint); }
     .benefits { padding: 115px 0; }
@@ -265,6 +266,7 @@
       .horizontal-preview { padding: 16px; }
       .live-widget--horizontal { height: 360px; }
       .live-widget--horizontal iframe { width: 100%; height: 360px; }
+      .super-banner-preview { padding: 16px 10px; }
       .standard-preview { padding: 12px; }
       .live-widget--standard { height: 620px; }
       .live-widget--standard iframe { height: 2100px; }
@@ -290,13 +292,18 @@
   </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </symbol>
+  </svg>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
   <header class="site-header" id="topo">
     <div class="container nav">
       <a class="brand" href="#topo" aria-label="Painel Eleitoral — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral <small>Dados que prendem a atenção</small></span></a>
       <nav class="nav-links" aria-label="Navegação principal"><a class="nav-link" href="#formatos">Formatos</a><a class="nav-link" href="#beneficios">Benefícios</a><a class="nav-link" href="#instalacao">Como funciona</a><a class="nav-link" href="#duvidas">Dúvidas</a></nav>
       <a class="button" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar com consultor no WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg><span>Falar com consultor</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span>Falar com consultor</span>
       </a>
     </div>
   </header>
@@ -331,37 +338,43 @@
         <div class="proof-item"><span class="proof-label">Pensado para</span><span class="proof-value">Portais que querem <strong>reter audiência</strong></span></div>
         <div class="proof-item"><span class="proof-label">Instalação</span><span class="proof-value">Menos de 5 minutos</span></div>
         <div class="proof-item"><span class="proof-label">Atualização</span><span class="proof-value">100% automática</span></div>
-        <div class="proof-item"><span class="proof-label">Formatos</span><span class="proof-value">4 opções editoriais</span></div>
+        <div class="proof-item"><span class="proof-label">Formatos</span><span class="proof-value">5 opções editoriais</span></div>
       </div>
     </section>
     <section class="studio" id="formatos" aria-labelledby="studio-title">
       <div class="container">
-        <div class="section-head section-head--split reveal"><div><p class="eyebrow eyebrow--light">Demonstração ao vivo</p><h2 class="section-title" id="studio-title">Quatro formatos para cada ponto da sua cobertura.</h2></div><p class="section-copy">Veja os widgets em suas proporções corretas. O conteúdo abaixo é carregado diretamente da plataforma.</p></div>
+        <div class="section-head section-head--split reveal"><div><p class="eyebrow eyebrow--light">Demonstração ao vivo</p><h2 class="section-title" id="studio-title">Cinco formatos para cada ponto da sua cobertura.</h2></div><p class="section-copy">Veja os widgets em suas proporções corretas. O conteúdo abaixo é carregado diretamente da plataforma.</p></div>
         <div class="studio-shell reveal">
-          <div class="studio-toolbar"><div class="studio-status"><span class="live-dot" aria-hidden="true"></span> Preview do produto em tempo real</div><div class="studio-formats" aria-label="Formatos disponíveis"><span class="format-chip is-active">Completo</span><span class="format-chip is-active">Horizontal</span><span class="format-chip is-active">300×250</span><span class="format-chip is-active">300×600</span></div></div>
+          <div class="studio-toolbar"><div class="studio-status"><span class="live-dot" aria-hidden="true"></span> Preview do produto em tempo real</div><div class="studio-formats" aria-label="Formatos disponíveis"><span class="format-chip is-active">Completo</span><span class="format-chip is-active">Horizontal</span><span class="format-chip is-active">970×250</span><span class="format-chip is-active">300×250</span><span class="format-chip is-active">300×600</span></div></div>
           <div class="studio-canvas">
             <article class="format-card format-card--wide">
               <header class="format-card__head"><div><h3>Faixa horizontal</h3><p>Leitura rápida no topo da home, matéria ou página especial</p></div><span class="size-badge">Até 1200 × 96px</span></header>
               <div class="horizontal-preview"><div class="live-widget live-widget--horizontal"><iframe src="https://eleicoes-front.vercel.app/horizontal.html?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo da faixa horizontal de apuração" loading="eager" scrolling="no"></iframe></div></div>
-              <footer class="format-card__foot"><span>Largura total · visão compacta dos candidatos</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/horizontal.html?turno=1&amp;cargo=1&amp;uf=br&quot; width=&quot;100%&quot; height=&quot;150&quot; style=&quot;border:0&quot; scrolling=&quot;no&quot; title=&quot;Faixa de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
+              <footer class="format-card__foot"><span>Largura total · visão compacta dos candidatos</span></footer>
+            </article>
+
+            <article class="format-card format-card--wide">
+              <header class="format-card__head"><div><h3>Super banner 970×250</h3><p>Mais impacto para home, capa especial e áreas nobres do portal</p></div><span class="size-badge">970 × 250px</span></header>
+              <div class="super-banner-preview"><div class="live-widget live-widget--970"><iframe src="https://eleicoes-front.vercel.app/970x250.html?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do widget 970 por 250 de apuração" loading="lazy" scrolling="no"></iframe></div></div>
+              <footer class="format-card__foot"><span>Formato panorâmico · alta presença editorial</span></footer>
             </article>
 
             <article class="format-card format-card--standard">
               <header class="format-card__head"><div><h3>Painel completo</h3><p>A experiência mais rica para páginas especiais de eleição</p></div><span class="size-badge">Até 720px de largura</span></header>
               <div class="standard-preview"><div class="live-widget live-widget--standard" tabindex="0" aria-label="Painel completo rolável. Use a roda do mouse ou as setas para ver todos os candidatos."><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do painel completo de apuração" loading="lazy" scrolling="no"></iframe></div></div>
-              <footer class="format-card__foot"><span>Resultados, estatísticas e lista completa de candidatos</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br&quot; width=&quot;100%&quot; height=&quot;760&quot; style=&quot;border:0&quot; title=&quot;Painel completo de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
+              <footer class="format-card__foot"><span>Resultados, estatísticas e lista completa de candidatos</span></footer>
             </article>
 
             <article class="format-card format-card--rectangle">
               <header class="format-card__head"><div><h3>Retângulo 300×250</h3><p>Para sidebar, meio de matéria e módulos editoriais</p></div><span class="size-badge">300 × 250px</span></header>
               <div class="sidebar-preview"><div class="sidebar-page"><div class="live-widget live-widget--sidebar"><iframe src="https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget lateral de apuração com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
-              <footer class="format-card__foot"><span>Padrão IAB · presença compacta</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp&quot; width=&quot;300&quot; height=&quot;250&quot; style=&quot;border:0&quot; scrolling=&quot;no&quot; title=&quot;Widget 300 por 250 de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
+              <footer class="format-card__foot"><span>Padrão IAB · presença compacta</span></footer>
             </article>
 
             <article class="format-card format-card--tower">
               <header class="format-card__head"><div><h3>Arranha-céu 300×600</h3><p>Mais informação e permanência na coluna lateral</p></div><span class="size-badge">300 × 600px</span></header>
               <div class="sidebar-preview sidebar-preview--tower"><div class="sidebar-page"><div class="live-widget live-widget--tower"><iframe src="https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget 300 por 600 com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
-              <footer class="format-card__foot"><span>Destaque vertical · cobertura aprofundada</span><button class="copy-button" type="button" data-copy="&lt;iframe src=&quot;https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp&quot; width=&quot;300&quot; height=&quot;600&quot; style=&quot;border:0&quot; scrolling=&quot;no&quot; title=&quot;Widget 300 por 600 de apuração&quot;&gt;&lt;/iframe&gt;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar exemplo</span></button></footer>
+              <footer class="format-card__foot"><span>Destaque vertical · cobertura aprofundada</span></footer>
             </article>
           </div>
         </div>
@@ -396,16 +409,16 @@
           <details open><summary>Preciso de um desenvolvedor para instalar?</summary><p>Não. Basta inserir a tag recebida em um bloco HTML do seu CMS. Se a sua equipe já publica banners ou vídeos incorporados, o processo será familiar.</p></details>
           <details><summary>O widget deixa meu site mais lento?</summary><p>O conteúdo é carregado isoladamente em um iframe. Isso evita que o widget bloqueie o carregamento principal da página do seu portal.</p></details>
           <details><summary>Posso escolher estado, cargo e turno?</summary><p>Sim. Esses parâmetros são configurados na tag fornecida para atender à linha editorial e à região de cobertura do seu veículo.</p></details>
-          <details><summary>Funciona no celular?</summary><p>Sim. O painel completo e a faixa horizontal reorganizam o conteúdo para telas menores. Os formatos 300×250 e 300×600 preservam suas proporções dentro do espaço disponível.</p></details>
+          <details><summary>Funciona no celular?</summary><p>Sim. O painel completo, a faixa horizontal e o 970×250 reorganizam o conteúdo para telas menores. Os formatos 300×250 e 300×600 preservam suas proporções dentro do espaço disponível.</p></details>
         </div>
       </div>
     </section>
     <section class="final-cta" aria-labelledby="cta-title">
-      <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/5500000000000?text=Olá!%20Quero%20uma%20proposta%20do%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div>
+      <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/5500000000000?text=Olá!%20Quero%20uma%20proposta%20do%20EleiçõesWidget%20Pro%20para%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div>
     </section>
   </main>
   <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral</span></a><span>© 2026 Painel Eleitoral. Todos os direitos reservados.</span><div class="footer-links"><a href="#">Privacidade</a><a href="#">Termos de uso</a></div></div></footer>
-  <a class="mobile-cta" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2A9.9 9.9 0 0 1 12.1 2a9.9 9.9 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7c0 5.5-4.4 9.9-9.9 9.9Z"/></svg></a>
+  <a class="mobile-cta" href="https://wa.me/5500000000000?text=Olá!%20Quero%20conhecer%20o%20EleiçõesWidget%20Pro." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg></a>
   <script>
     const header = document.querySelector('.site-header');
     const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
@@ -413,14 +426,6 @@
     window.addEventListener('scroll', updateHeader, { passive: true });
     const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries, currentObserver) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); currentObserver.unobserve(entry.target); } }); }, { threshold: 0.12 }) : null;
     document.querySelectorAll('.reveal').forEach((element) => { if (observer) observer.observe(element); else element.classList.add('is-visible'); });
-    document.querySelectorAll('.copy-button').forEach((button) => {
-      button.addEventListener('click', async () => {
-        const label = button.querySelector('span');
-        try { await navigator.clipboard.writeText(button.dataset.copy); label.textContent = 'Código copiado'; }
-        catch { label.textContent = 'Não foi possível copiar'; }
-        window.setTimeout(() => { label.textContent = 'Copiar exemplo'; }, 2200);
-      });
-    });
   </script>
 </body>
 </html>
