@@ -69,8 +69,8 @@
     .brand-mark::before, .brand-mark::after { content: ""; position: absolute; left: 8px; width: 22px; height: 7px; border-radius: 999px; background: var(--mint); transform: skewY(-15deg); }
     .brand-mark::before { top: 10px; }
     .brand-mark::after { top: 21px; width: 15px; }
-    .brand-name { line-height: 1.05; letter-spacing: -.025em; }
-    .brand-name small { display: block; margin-top: 4px; color: var(--ink-muted); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; }
+    .brand-name { line-height: 1.05; letter-spacing: -.025em; color: var(--ink);}
+    .brand-name small { display: block; margin-top: 4px; color: var(--mint-dark); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-link { position: relative; padding-block: 8px; color: var(--ink-soft); font-size: .95rem; font-weight: 700; transition: color .25s ease; }
     .nav-link::after { content: ""; position: absolute; right: 0; bottom: 2px; left: 0; height: 2px; border-radius: 999px; background: var(--mint-dark); transform: scaleX(0); transform-origin: center; transition: transform .25s ease; }
@@ -81,7 +81,7 @@
     .hero::before { content: ""; position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(rgba(7, 24, 45, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(7, 24, 45, .08) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
     .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: center; gap: 60px; }
     .hero-content { min-width: 0; }
-    .live-pill { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; padding: 8px 13px; border: 1px solid #cbd8d2; border-radius: 999px; background: rgba(255, 255, 255, .72); color: var(--ink-soft); font-size: .78rem; font-weight: 700; box-shadow: var(--shadow-sm); }
+    .live-pill { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; padding: 8px 13px; border: 1px solid #cbd8d2; border-radius: 999px; background: rgba(255, 255, 255, .72); color: var(--ink-soft); font-size: .8rem; font-weight: 700; box-shadow: var(--shadow-sm); }
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint-strong); box-shadow: 0 0 0 5px rgba(35, 201, 140, .14); animation: pulse 1.8s ease infinite; }
     .hero h1 { max-width: 620px; margin: 0; font-family: var(--display); font-size: clamp(2.9rem, 5.5vw, 5.15rem); font-weight: 800; letter-spacing: -.07em; line-height: .98; }
     .hero h1 span { position: relative; z-index: 0; white-space: nowrap; }
@@ -100,7 +100,7 @@
     .browser-address { flex: 1; max-width: 250px; height: 23px; margin-inline: auto; border: 1px solid #dce3df; border-radius: 7px; background: var(--white); }
     .newsroom { padding: 24px 14px; }
     .newsroom-brand { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 2px solid var(--ink); font-family: var(--display); font-weight: 800; }
-    .newsroom-brand small { color: var(--ink-muted); font-family: var(--body); font-size: .65rem; font-weight: 600; }
+    .newsroom-brand small { color: var(--ink-muted); font-family: var(--body); font-size: .73rem; font-weight: 700; }
     .fake-kicker { width: 85px; height: 7px; margin-top: 22px; border-radius: 10px; background: var(--mint-strong); }
     .fake-headline { width: 88%; height: 17px; margin-top: 13px; border-radius: 4px; background: var(--ink); box-shadow: 0 26px 0 #d9dfdc; }
     .widget-frame { position: relative; height: 355px; margin-top: 34px; overflow-x: hidden; overflow-y: auto; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
@@ -245,9 +245,9 @@
     .cta-bars span:nth-child(6) { --bar-min: .38; --bar-max: 1; --bar-speed: 1.8s; --bar-delay: -1.1s; height: 88%; opacity: .92; }
     .cta-bars span:nth-child(7) { --bar-min: .52; --bar-max: 1; --bar-speed: 1.25s; --bar-delay: -.2s; height: 100%; }
     .cta-actions { display: grid; gap: 12px; min-width: 250px; }
-    .cta-actions small { color: #8497aa; text-align: center; font-size: .72rem; }
+    .cta-actions small { color: #8497aa; text-align: center; font-size: .8rem; }
     footer { padding: 28px 0 38px; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ink-muted); font-size: .78rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ink-muted); font-size: .8rem; }
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: var(--mint-dark); }
     .mobile-cta { display: none; }
@@ -375,7 +375,7 @@
         <div class="hero-content reveal">
           <div class="live-pill"><span class="live-dot" aria-hidden="true"></span> Pronto para as Eleições 2026</div>
           <h1 id="hero-title">A apuração<br>acontece no<br><span>seu portal.</span></h1>
-          <p class="hero-copy">Transforme a noite da eleição em mais tempo de permanência, recorrência e relevância para a sua marca com resultados ao vivo — sem desenvolver uma linha de código.</p>
+          <p class="hero-copy">Transforme a noite da eleição em mais tempo de permanência, recorrência e relevância para a sua marca com resultados ao vivo, sem desenvolver uma linha de código.</p>
           <div class="hero-actions">
             <a class="button button--primary" href="https://wa.me/5500000000000?text=Olá!%20Quero%20colocar%20a%20apuração%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer">Quero para o meu portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="button button--ghost" href="#formatos">Ver widgets ao vivo</a>
@@ -413,7 +413,7 @@
         </div>
         <div class="case-grid">
           <article class="case-card reveal"><strong class="case-number">+381%</strong><div><h3>Um caso documentado de crescimento</h3><p>O Poder360 registrou alta de 381% em visitantes únicos em outubro de 2022 contra outubro de 2021, segundo dados da Comscore divulgados pelo veículo.</p><a class="data-source" href="https://www.poder360.com.br/poder360/poder360-tem-recorde-de-178-milhoes-de-leitores-em-outubro/" target="_blank" rel="noopener noreferrer">Consultar Poder360/Comscore ↗</a></div></article>
-          <article class="case-card reveal"><strong class="case-number">47,5 mi</strong><div><h3>Resultados ao vivo geram consumo</h3><p>O placar de apuração do Terra somou mais de 47,5 milhões de visualizações nos dois turnos; o portal informou recorde mensal de audiência em outubro.</p><a class="data-source" href="https://www.terra.com.br/nossaterra/sala-de-imprensa/terra-registra-recorde-de-audiencia-com-a-cobertura-das-eleicoes-2022%2C1689a0f6c14a39ed79b1a680ad6104ce1wj3feyh.html" target="_blank" rel="noopener noreferrer">Consultar no Terra ↗</a></div></article>
+          <article class="case-card reveal"><strong class="case-number">47,5 mi</strong><div><h3>Resultados ao vivo geram consumo</h3><p>O placar de apuração do Terra somou mais de 47,5 milhões de visualizações nos dois turnos, o portal informou recorde mensal de audiência em outubro.</p><a class="data-source" href="https://www.terra.com.br/nossaterra/sala-de-imprensa/terra-registra-recorde-de-audiencia-com-a-cobertura-das-eleicoes-2022%2C1689a0f6c14a39ed79b1a680ad6104ce1wj3feyh.html" target="_blank" rel="noopener noreferrer">Consultar no Terra ↗</a></div></article>
         </div>
         <p class="attention-note reveal">A eleição geral de 2022 é utilizada como a referência nacional mais recente disponível. Os resultados de Poder360 e Terra são casos individuais divulgados pelos respectivos veículos e não representam uma média de crescimento de todo o mercado nem uma projeção para a próxima eleição.</p>
       </div>
