@@ -54,7 +54,7 @@
     .section-head--split .section-copy { margin: 0 0 6px; max-width: 450px; }
     .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 10px; padding: 0 22px; border-radius: 999px; cursor: pointer; font-family: var(--display); font-size: .92rem; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
     .button:hover { transform: translateY(-2px); }
-    .button:focus-visible, .nav-link:focus-visible, summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+    .button:focus-visible, .nav-link:focus-visible, .preview-fab:focus-visible, summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
     .button--primary { background: var(--mint); color: var(--ink); box-shadow: 0 10px 28px rgba(35, 201, 140, .22); }
     .button--primary:hover { background: #b5f8dd; box-shadow: 0 14px 36px rgba(35, 201, 140, .3); }
     .button--whatsapp { background: var(--whatsapp); color: #052b18; }
@@ -250,6 +250,10 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ink-muted); font-size: .8rem; }
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: var(--mint-dark); }
+    .preview-fab { position: fixed; right: 24px; bottom: 24px; z-index: 880; display: inline-flex; min-height: 50px; align-items: center; gap: 10px; padding: 0 18px; border: 1px solid rgba(156,242,207,.3); border-radius: 999px; background: var(--ink); color: var(--white); font-family: var(--display); font-size: .82rem; font-weight: 800; box-shadow: 0 14px 34px rgba(7,24,45,.25); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .preview-fab::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--mint-strong); box-shadow: 0 0 0 5px rgba(35,201,140,.14); }
+    .preview-fab:hover { background: var(--ink-soft); box-shadow: 0 18px 42px rgba(7,24,45,.32); transform: translateY(-2px); }
+    .preview-fab svg { width: 16px; height: 16px; color: var(--mint); }
     .mobile-cta { display: none; }
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.is-visible { opacity: 1; transform: none; }
@@ -340,6 +344,7 @@
       .cta-box { padding: 38px 25px; }
       .cta-actions { width: 100%; min-width: 0; }
       .footer-inner { align-items: start; flex-direction: column; }
+      .preview-fab { right: 14px; bottom: 80px; min-height: 46px; padding-inline: 15px; font-size: .76rem; }
       .mobile-cta { position: fixed; right: 14px; bottom: 14px; z-index: 900; display: grid; width: 54px; height: 54px; place-items: center; border: 3px solid var(--paper); border-radius: 50%; background: var(--whatsapp); color: #052b18; box-shadow: 0 12px 28px rgba(7,24,45,.24); }
       .mobile-cta svg { width: 25px; height: 25px; }
     }
@@ -378,7 +383,7 @@
           <p class="hero-copy">Transforme a noite da eleição em mais tempo de permanência, recorrência e relevância para a sua marca com resultados ao vivo, sem desenvolver uma linha de código.</p>
           <div class="hero-actions">
             <a class="button button--primary" href="https://wa.me/556792340852?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer">Quero para o meu portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="button button--ghost" href="#formatos">Ver widgets ao vivo</a>
+            <a class="button button--ghost" href="./previas.html">Ver prévias 2026</a>
           </div>
           <div class="trust-line"><div class="trust-avatars" aria-hidden="true"><span class="trust-avatar">JN</span><span class="trust-avatar">PN</span><span class="trust-avatar">RD</span></div><span>Feito para jornais, rádios, TVs e portais independentes.</span></div>
         </div>
@@ -496,7 +501,8 @@
       <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-side"><div class="cta-signal" aria-hidden="true"><div class="cta-signal-head"><span class="cta-signal-live">Dados ao vivo</span><span>100% automático</span></div><div class="cta-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/556792340852?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div></div>
     </section>
   </main>
-  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral</span></a><span>© 2026 Painel Eleitoral. Todos os direitos reservados.</span><div class="footer-links"><a href="./privacidade.html">Privacidade</a><a href="./termos.html">Termos de uso</a></div></div></footer>
+  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral</span></a><span>© 2026 Painel Eleitoral. Todos os direitos reservados.</span><div class="footer-links"><a href="./previas.html">Prévias 2026</a><a href="./privacidade.html">Privacidade</a><a href="./termos.html">Termos de uso</a></div></div></footer>
+  <a class="preview-fab" href="./previas.html" aria-label="Ver prévias do Painel Eleitoral 2026"><span>Prévias 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   <a class="mobile-cta" href="https://wa.me/556792340852?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg></a>
   <script>
     const header = document.querySelector('.site-header');
