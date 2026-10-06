@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Widgets de apuração eleitoral em tempo real para portais de notícias. Instalação simples, atualização automática e design responsivo.">
   <meta name="theme-color" content="#07182d">
-  <title>Painel Eleitoral | Apuração eleitoral no seu portal</title>
+  <title>Placar das Urnas | Apuração eleitoral no seu portal</title>
   <link rel="icon" href="./favicon.ico" sizes="any">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,16 +95,19 @@
     .product-stage { position: relative; min-width: 0; }
     .stage-orbit { position: absolute; inset: -40px -60px; border: 1px solid rgba(7, 24, 45, .11); border-radius: 50%; transform: rotate(-8deg); }
     .browser { position: relative; overflow: hidden; border: 1px solid rgba(7, 24, 45, .12); border-radius: 22px; background: var(--white); box-shadow: var(--shadow-lg); }
-    .browser-bar { height: 47px; display: flex; align-items: center; gap: 7px; padding: 0 17px; border-bottom: 1px solid var(--line); background: #edf1ef; }
-    .browser-dot { width: 9px; height: 9px; border-radius: 50%; background: #c6cfca; }
-    .browser-address { flex: 1; max-width: 250px; height: 23px; margin-inline: auto; border: 1px solid #dce3df; border-radius: 7px; background: var(--white); }
+    .browser-bar { height: 48px; display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid var(--line); background: #edf1ef; }
+    .browser-controls { display: flex; align-items: center; gap: 4px; }
+    .browser-dot { flex: 0 0 12px; width: 12px; height: 12px; border: 1px solid rgba(0,0,0,.08); border-radius: 50%; }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+    .browser-address { display: flex; width: 100%; max-width: 310px; min-width: 0; height: 28px; align-items: center; justify-content: center; justify-self: center; padding: 0 6px; border: 1px solid #dce3df; border-radius: 7px; background: var(--white); color: var(--ink-muted); font-size: .7rem; line-height: 1; white-space: nowrap; }
     .newsroom { padding: 24px 14px; }
     .newsroom-brand { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 2px solid var(--ink); font-family: var(--display); font-weight: 800; }
     .newsroom-brand small { color: var(--ink-muted); font-family: var(--body); font-size: .73rem; font-weight: 700; }
     .fake-kicker { width: 85px; height: 7px; margin-top: 22px; border-radius: 10px; background: var(--mint-strong); }
     .fake-headline { width: 88%; height: 17px; margin-top: 13px; border-radius: 4px; background: var(--ink); box-shadow: 0 26px 0 #d9dfdc; }
-    .widget-frame { position: relative; height: 355px; margin-top: 34px; overflow-x: hidden; overflow-y: auto; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
-    .widget-frame iframe { display: block; width: 100%; height: 2100px; border: 0; background: transparent; }
+    .widget-frame { position: relative; width: 100%; max-width: 100%; height: 480px; margin-top: 34px; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #f6f8f7; box-shadow: 0 15px 35px rgba(7,24,45,.1); }
     .widget-frame::-webkit-scrollbar, .live-widget::-webkit-scrollbar { width: 5px; height: 5px; }
     .widget-frame::-webkit-scrollbar-track, .live-widget::-webkit-scrollbar-track { background: transparent; }
     .widget-frame::-webkit-scrollbar-thumb, .live-widget::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(16,40,68,.35); }
@@ -158,6 +161,8 @@
     .studio-canvas { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; gap: 24px; padding: 24px; background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px); background-size: 18px 18px; }
     .format-card { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--white); color: var(--ink); box-shadow: 0 20px 48px rgba(0,0,0,.18); }
     .format-card--wide, .format-card--standard { grid-column: 1 / -1; }
+    .format-stack { grid-column: span 5; display: flex; min-width: 0; flex-direction: column; gap: 24px; }
+    .format-stack > .format-card { width: 100%; margin: 0; }
     .format-card--rectangle { grid-column: span 5; }
     .format-card--tower { grid-column: span 7; border-color: rgba(156,242,207,.55); }
     .format-card__head { display: flex; align-items: start; justify-content: space-between; gap: 18px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
@@ -167,24 +172,23 @@
     .editorial-preview { padding: 26px; background: #f0f3f1; }
     .article-line { height: 8px; margin-bottom: 9px; border-radius: 8px; background: #d9dfdc; }
     .article-line:nth-child(2) { width: 73%; }
-    .live-widget { position: relative; margin: 22px 0; overflow: auto; border-radius: 11px; background: var(--white); box-shadow: 0 12px 28px rgba(7,24,45,.09); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
-    .live-widget iframe { display: block; width: 100%; border: 0; background: transparent; }
+    .live-widget { position: relative; width: 100%; max-width: 100%; margin: 22px 0; overflow: hidden; border-radius: 11px; background: var(--white); box-shadow: 0 12px 28px rgba(7,24,45,.09); scroll-behavior: smooth; scrollbar-color: rgba(16,40,68,.38) transparent; scrollbar-width: thin; }
+    .widget-frame iframe, .live-widget iframe { transform: scale(var(--preview-scale, 1)); transform-origin: top left; }
+    .widget-frame iframe, .live-widget--standard iframe, .live-widget--panoramic iframe, .live-widget--horizontal iframe { width: 100% !important; height: 100% !important; transform: none; }
     .horizontal-preview { padding: 22px 20px; background: #e8ecea; }
-    .live-widget--horizontal { width: 100%; height: 120px; margin: 0; overflow: hidden; }
-    .live-widget--horizontal iframe { width: 100%; max-width: 100%; height: 120px; }
-    .super-banner-preview { display: grid; place-items: center; padding: 30px 24px; background: linear-gradient(145deg, #dfe7e3, #f4f7f5); }
-    .live-widget--970 { width: min(970px, 100%); height: 250px; margin: 0 auto; overflow: hidden; }
-    .live-widget--970 iframe { width: 970px; max-width: 100%; height: 250px; }
-    .standard-preview { display: grid; place-items: center; padding: 34px; background: linear-gradient(145deg, #e7ece9, #f7f9f8); }
-    .live-widget--standard { width: min(720px, 100%); height: 680px; margin: 0 auto; overflow-x: hidden; overflow-y: auto; }
-    .live-widget--standard iframe { height: 2100px; }
-    .sidebar-preview { display: grid; place-items: center; min-height: 390px; padding: 28px; background: #e8ecea; }
+    .live-widget--horizontal, .live-widget--banner { margin: 0 auto; }
+    .live-widget--horizontal { height: 100px; }
+    .live-widget--panoramic { height: 100px; margin: 0 auto; }
+    .live-widget--panoramic-tall { height: 200px; }
+    .super-banner-preview { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 30px 24px; background: linear-gradient(145deg, #dfe7e3, #f4f7f5); }
+    .live-widget--970 { margin: 0 auto; }
+    .standard-preview { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 20px; background: linear-gradient(145deg, #e7ece9, #f7f9f8); }
+    .live-widget--standard { height: 680px; margin: 0 auto; }
+    .sidebar-preview { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; min-height: 390px; padding: 28px; background: #e8ecea; }
     .sidebar-preview--tower { min-height: 680px; background: linear-gradient(145deg, #dbe4df, #f0f4f2); }
     .sidebar-page { width: 100%; max-width: 310px; padding: 5px; border-radius: 13px; background: rgba(255,255,255,.55); }
     .live-widget--sidebar { width: 300px; max-width: 100%; margin: 0 auto; }
-    .live-widget--sidebar iframe { width: 300px; max-width: 100%; height: 250px; }
     .live-widget--tower { width: 300px; max-width: 100%; margin: 0 auto; }
-    .live-widget--tower iframe { width: 300px; max-width: 100%; height: 600px; }
     .format-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 20px; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: .75rem; }
     .studio-note { display: flex; align-items: center; gap: 10px; margin: 18px 4px 0; color: #91a4b6; font-size: .82rem; }
     .studio-note svg { flex: 0 0 auto; width: 17px; color: var(--mint); }
@@ -273,6 +277,7 @@
       .attention-grid { grid-template-columns: 1fr 1fr; }
       .attention-card--feature { grid-column: 1 / -1; }
       .studio-canvas { grid-template-columns: minmax(0, 1fr); }
+      .format-stack { grid-column: 1 / -1; width: min(620px, 100%); margin-inline: auto; }
       .format-card--wide, .format-card--standard, .format-card--rectangle, .format-card--tower { grid-column: 1 / -1; }
       .format-card--rectangle, .format-card--tower { width: min(620px, 100%); margin-inline: auto; }
       .flow-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -298,12 +303,12 @@
       .trust-line { align-items: start; }
       .stage-orbit { display: none; }
       .browser { border-radius: 16px; transform: none; }
+      .browser-bar { gap: 8px; padding-inline: 12px; }
+      .browser-address { font-size: .65rem; }
       .newsroom { padding: 18px 14px; }
       .newsroom-brand small { display: none; }
       .fake-headline { width: 94%; }
       .widget-frame { margin-top: 32px; }
-      .widget-frame { height: 430px; }
-      .widget-frame iframe { height: 2100px; }
       .proof-grid { grid-template-columns: 1fr 1fr; }
       .proof-item { min-height: 108px; padding: 22px 14px; border-top: 1px solid var(--line); }
       .proof-item:nth-child(odd) { border-left: 0; }
@@ -324,15 +329,11 @@
       .studio-formats { display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .format-chip { min-width: 0; padding-inline: 5px; text-align: center; }
       .studio-canvas { padding: 12px; }
-      .format-card__head { padding: 17px; }
+      .format-card__head { padding: 17px; flex-wrap: wrap; }
       .editorial-preview { padding: 16px; }
       .horizontal-preview { padding: 16px; }
-      .live-widget--horizontal { height: 250px; }
-      .live-widget--horizontal iframe { width: 100%; height: 250px; }
       .super-banner-preview { padding: 16px 10px; }
       .standard-preview { padding: 12px; }
-      .live-widget--standard { height: 620px; }
-      .live-widget--standard iframe { height: 2100px; }
       .sidebar-preview { min-height: 340px; padding: 20px 8px; overflow: hidden; }
       .sidebar-preview--tower { min-height: 640px; }
       .format-card__foot { align-items: start; flex-direction: column; }
@@ -367,9 +368,9 @@
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#topo" aria-label="Painel Eleitoral — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral <small>Dados que prendem a atenção</small></span></a>
+      <a class="brand" href="#topo" aria-label="Placar das Urnas — início"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Placar das Urnas <small>Dados que prendem a atenção</small></span></a>
       <nav class="nav-links" aria-label="Navegação principal"><a class="nav-link" href="#audiencia">Audiência</a><a class="nav-link" href="#formatos">Formatos</a><a class="nav-link" href="#beneficios">Benefícios</a><a class="nav-link" href="#instalacao">Como funciona</a><a class="nav-link" href="#duvidas">Dúvidas</a></nav>
-      <a class="button" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar com consultor no WhatsApp">
+      <a class="button" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Placar%20das%20Urnas%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar com consultor no WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span>Falar com consultor</span>
       </a>
     </div>
@@ -382,7 +383,7 @@
           <h1 id="hero-title">A apuração<br>acontece no<br><span>seu portal.</span></h1>
           <p class="hero-copy">Transforme a noite da eleição em mais tempo de permanência, recorrência e relevância para a sua marca com resultados ao vivo, sem desenvolver uma linha de código.</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer">Quero para o meu portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button--primary" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Placar%20das%20Urnas%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer">Quero para o meu portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="button button--ghost" href="./previas.html">Ver prévias 2026</a>
           </div>
           <div class="trust-line"><div class="trust-avatars" aria-hidden="true"><span class="trust-avatar">JN</span><span class="trust-avatar">PN</span><span class="trust-avatar">RD</span></div><span>Feito para jornais, rádios, TVs e portais independentes.</span></div>
@@ -390,11 +391,11 @@
         <div class="product-stage reveal" aria-label="Demonstração do widget em um portal de notícias">
           <div class="stage-orbit" aria-hidden="true"></div>
           <div class="browser">
-            <div class="browser-bar" aria-hidden="true"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-address"></span></div>
+            <div class="browser-bar"><span class="browser-controls" aria-hidden="true"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></span><span class="browser-address">jornaldocentro.com.br</span></div>
             <div class="newsroom">
               <div class="newsroom-brand"><span>JORNAL DO CENTRO</span><small>Política · Eleições 2026</small></div>
               <div class="fake-kicker" aria-hidden="true"></div><div class="fake-headline" aria-hidden="true"></div>
-              <div class="widget-frame" tabindex="0" aria-label="Painel completo rolável. Use a roda do mouse ou as setas para ver todos os dados."><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Painel completo de apuração eleitoral" loading="eager" scrolling="no"></iframe></div>
+              <div class="widget-frame"><iframe src="./painel-completo.html?embed-modo=desktop" title="Placar das Urnas 2026 — 1180 por 680" width="1180" height="680" style="display:block;width:1180px;height:680px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="auto" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             </div>
           </div>
         </div>
@@ -425,39 +426,67 @@
     </section>
     <section class="studio" id="formatos" aria-labelledby="studio-title">
       <div class="container">
-        <div class="section-head section-head--split reveal"><div><p class="eyebrow eyebrow--light">Demonstração ao vivo</p><h2 class="section-title" id="studio-title">Cinco formatos para cada ponto da sua cobertura.</h2></div><p class="section-copy">Veja os widgets em suas proporções corretas. O conteúdo abaixo é carregado diretamente da plataforma.</p></div>
+        <div class="section-head section-head--split reveal"><div><p class="eyebrow eyebrow--light">Demonstração ao vivo</p><h2 class="section-title" id="studio-title">Nove formatos para cada ponto da sua cobertura.</h2></div><p class="section-copy">Veja os widgets em suas proporções corretas. O conteúdo abaixo é carregado diretamente da plataforma.</p></div>
         <div class="studio-shell reveal">
-          <div class="studio-toolbar"><div class="studio-status"><span class="live-dot" aria-hidden="true"></span> Preview do produto em tempo real</div><div class="studio-formats" aria-label="Formatos disponíveis"><span class="format-chip is-active">Completo</span><span class="format-chip is-active">Horizontal</span><span class="format-chip is-active">970×250</span><span class="format-chip is-active">300×250</span><span class="format-chip is-active">300×600</span></div></div>
+          <div class="studio-toolbar"><div class="studio-status"><span class="live-dot" aria-hidden="true"></span> Preview do produto em tempo real</div><div class="studio-formats" aria-label="Formatos disponíveis"><span class="format-chip is-active">Completo</span><span class="format-chip is-active">1200×100</span><span class="format-chip is-active">970×250</span><span class="format-chip is-active">300×250</span><span class="format-chip is-active">300×600</span><span class="format-chip is-active">1260×100</span><span class="format-chip is-active">1260×200</span><span class="format-chip is-active">970×90</span><span class="format-chip is-active">320×100</span></div></div>
           <div class="studio-canvas">
             <article class="format-card format-card--wide">
-              <header class="format-card__head"><div><h3>Faixa horizontal</h3><p>Leitura rápida no topo da home, matéria ou página especial</p></div><span class="size-badge">Até 1200 × 100px</span></header>
-              <div class="horizontal-preview"><div class="live-widget live-widget--horizontal"><iframe src="https://eleicoes-front.vercel.app/horizontal.html?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo da faixa horizontal de apuração" loading="eager" scrolling="no"></iframe></div></div>
+              <header class="format-card__head"><div><h3>Faixa horizontal</h3><p>Leitura rápida no topo da home, matéria ou página especial</p></div><span class="size-badge">1200 × 100px</span></header>
+              <div class="horizontal-preview"><div class="live-widget live-widget--horizontal"><iframe src="https://apuracao.placardasurnas.com.br/2026/horizontal.html" title="Placar das Urnas 2026 — 1200 por 100" width="1200" height="100" style="display:block;width:1200px;height:100px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
               <footer class="format-card__foot"><span>Largura total · visão compacta dos candidatos</span></footer>
             </article>
 
             <article class="format-card format-card--wide">
               <header class="format-card__head"><div><h3>Super banner 970×250</h3><p>Mais impacto para home, capa especial e áreas nobres do portal</p></div><span class="size-badge">970 × 250px</span></header>
-              <div class="super-banner-preview"><div class="live-widget live-widget--970"><iframe src="https://eleicoes-front.vercel.app/970x250.html?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do widget 970 por 250 de apuração" loading="lazy" scrolling="no"></iframe></div></div>
+              <div class="super-banner-preview"><div class="live-widget live-widget--970"><iframe src="https://apuracao.placardasurnas.com.br/2026/970x250.html" title="Placar das Urnas 2026 — 970 por 250" width="970" height="250" style="display:block;width:970px;height:250px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
               <footer class="format-card__foot"><span>Formato panorâmico · alta presença editorial</span></footer>
             </article>
 
             <article class="format-card format-card--standard">
-              <header class="format-card__head"><div><h3>Painel completo</h3><p>A experiência mais rica para páginas especiais de eleição</p></div><span class="size-badge">Até 720px de largura</span></header>
-              <div class="standard-preview"><div class="live-widget live-widget--standard" tabindex="0" aria-label="Painel completo rolável. Use a roda do mouse ou as setas para ver todos os candidatos."><iframe src="https://eleicoes-front.vercel.app/?turno=1&amp;cargo=1&amp;uf=br" title="Demonstração ao vivo do painel completo de apuração" loading="lazy" scrolling="no"></iframe></div></div>
+              <header class="format-card__head"><div><h3>Painel completo</h3><p>A experiência mais rica para páginas especiais de eleição</p></div><span class="size-badge">1180 × 680px</span></header>
+              <div class="standard-preview"><div class="live-widget live-widget--standard"><iframe src="./painel-completo.html?embed-modo=desktop" title="Placar das Urnas 2026 — 1180 por 680" width="1180" height="680" style="display:block;width:1180px;height:680px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="auto" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
               <footer class="format-card__foot"><span>Resultados, estatísticas e lista completa de candidatos</span></footer>
             </article>
 
-            <article class="format-card format-card--rectangle">
-              <header class="format-card__head"><div><h3>Retângulo 300×250</h3><p>Para sidebar, meio de matéria e módulos editoriais</p></div><span class="size-badge">300 × 250px</span></header>
-              <div class="sidebar-preview"><div class="sidebar-page"><div class="live-widget live-widget--sidebar"><iframe src="https://eleicoes-front.vercel.app/300x250.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget lateral de apuração com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
-              <footer class="format-card__foot"><span>Padrão IAB · presença compacta</span></footer>
-            </article>
+            <div class="format-stack">
+              <article class="format-card format-card--rectangle">
+                <header class="format-card__head"><div><h3>Retângulo 300×250</h3><p>Para sidebar, meio de matéria e módulos editoriais</p></div><span class="size-badge">300 × 250px</span></header>
+                <div class="sidebar-preview"><div class="sidebar-page"><div class="live-widget live-widget--sidebar"><iframe src="https://apuracao.placardasurnas.com.br/2026/300x250.html" title="Placar das Urnas 2026 — 300 por 250" width="300" height="250" style="display:block;width:300px;height:250px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div></div>
+                <footer class="format-card__foot"><span>Padrão IAB · presença compacta</span></footer>
+              </article>
+
+              <article class="format-card format-card--compact">
+                <header class="format-card__head"><div><h3>Banner compacto 320×100</h3><p>Uma opção compacta para celular e espaços menores do portal</p></div><span class="size-badge">320 × 100px</span></header>
+                <div class="super-banner-preview"><div class="live-widget live-widget--banner"><iframe src="https://apuracao.placardasurnas.com.br/2026/320x100.html" title="Placar das Urnas 2026 — 320 por 100" width="320" height="100" style="display:block;width:320px;height:100px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+                <footer class="format-card__foot"><span>Formato para celular · presença compacta</span></footer>
+              </article>
+            </div>
 
             <article class="format-card format-card--tower">
               <header class="format-card__head"><div><h3>Arranha-céu 300×600</h3><p>Mais informação e permanência na coluna lateral</p></div><span class="size-badge">300 × 600px</span></header>
-              <div class="sidebar-preview sidebar-preview--tower"><div class="sidebar-page"><div class="live-widget live-widget--tower"><iframe src="https://eleicoes-front.vercel.app/300x600.html?turno=1&amp;cargo=3&amp;uf=sp" title="Demonstração ao vivo do widget 300 por 600 com lista rolável" loading="lazy" scrolling="auto"></iframe></div></div></div>
+              <div class="sidebar-preview sidebar-preview--tower"><div class="sidebar-page"><div class="live-widget live-widget--tower"><iframe src="https://apuracao.placardasurnas.com.br/2026/300x600.html" title="Placar das Urnas 2026 — 300 por 600" width="300" height="600" style="display:block;width:300px;height:600px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div></div>
               <footer class="format-card__foot"><span>Destaque vertical · cobertura aprofundada</span></footer>
             </article>
+
+            <article class="format-card format-card--wide">
+              <header class="format-card__head"><div><h3>Faixa panorâmica 1260×100</h3><p>Cobertura em uma faixa compacta para o topo do portal</p></div><span class="size-badge">1260 × 100px</span></header>
+              <div class="super-banner-preview"><div class="live-widget live-widget--panoramic"><iframe src="https://apuracao.placardasurnas.com.br/2026/1260x100.html" title="Placar das Urnas 2026 — 1260 por 100" width="1260" height="100" style="display:block;width:1260px;height:100px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+              <footer class="format-card__foot"><span>Formato panorâmico · leitura rápida</span></footer>
+            </article>
+
+            <article class="format-card format-card--wide">
+              <header class="format-card__head"><div><h3>Banner panorâmico 1260×200</h3><p>Mais espaço para os resultados na home e em páginas especiais</p></div><span class="size-badge">1260 × 200px</span></header>
+              <div class="super-banner-preview"><div class="live-widget live-widget--panoramic live-widget--panoramic-tall"><iframe src="https://apuracao.placardasurnas.com.br/2026/1260x200.html" title="Placar das Urnas 2026 — 1260 por 200" width="1260" height="200" style="display:block;width:1260px;height:200px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+              <footer class="format-card__foot"><span>Destaque na home · mais informação</span></footer>
+            </article>
+
+            <article class="format-card format-card--wide">
+              <header class="format-card__head"><div><h3>Faixa compacta 970×90</h3><p>Resultados em uma faixa discreta entre módulos editoriais</p></div><span class="size-badge">970 × 90px</span></header>
+              <div class="super-banner-preview"><div class="live-widget live-widget--banner"><iframe src="https://apuracao.placardasurnas.com.br/2026/970x90.html" title="Placar das Urnas 2026 — 970 por 90" width="970" height="90" style="display:block;width:970px;height:90px;margin:0;border:0;overflow:hidden;background:transparent" loading="eager" scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+              <footer class="format-card__foot"><span>Formato compacto · integração entre conteúdos</span></footer>
+            </article>
+
+
           </div>
         </div>
         <p class="studio-note reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 16v-4M12 8h.01"/></svg>Cada formato mantém sua proporção real. Você recebe o código pronto para publicar, sem configuração manual.</p>
@@ -480,7 +509,7 @@
         <div class="flow-list">
           <article class="flow-step reveal"><span class="flow-number">01</span><div><h3>Receba o código pronto</h3><p>Enviamos a tag completa do widget, sem etapas extras de configuração.</p></div></article>
           <article class="flow-step reveal"><span class="flow-number">02</span><div><h3>Cole no seu site</h3><p>Insira o código recebido em um bloco HTML da página em que deseja exibir o widget.</p></div></article>
-          <article class="flow-step reveal"><span class="flow-number">03</span><div><h3>Publique e pronto</h3><p>O widget aparece no espaço escolhido e passa a exibir as atualizações automaticamente.</p><div class="compatibility" aria-label="Plataformas compatíveis"><span>WordPress</span><span>Elementor</span><span>Wix</span><span>Ghost</span><span>HTML</span></div></div></article>
+          <article class="flow-step reveal"><span class="flow-number">03</span><div><h3>Publique e pronto</h3><p>O widget aparece no espaço escolhido e passa a exibir as atualizações automaticamente.</p><div class="compatibility" aria-label="Plataformas compatíveis"><span>Ad Manager</span><span>WordPress</span><span>Elementor</span><span>Wix</span><span>Ghost</span><span>HTML</span></div></div></article>
         </div>
       </div>
     </section>
@@ -491,20 +520,43 @@
           <details open><summary>Preciso de um desenvolvedor para instalar?</summary><p>Não. Basta inserir a tag recebida em um bloco HTML do seu CMS. Se a sua equipe já publica banners ou vídeos incorporados, o processo será familiar.</p></details>
           <details><summary>O widget deixa meu site mais lento?</summary><p>O conteúdo é carregado isoladamente em um iframe. Isso evita que o widget bloqueie o carregamento principal da página do seu portal.</p></details>
           <details><summary>Preciso configurar o widget depois de instalar?</summary><p>Não. O código é entregue pronto para uso. Você só precisa colá-lo no bloco HTML da página e publicar.</p></details>
-          <details><summary>Funciona no celular?</summary><p>Sim. O painel completo, a faixa horizontal e o 970×250 reorganizam o conteúdo para telas menores. Os formatos 300×250 e 300×600 preservam suas proporções dentro do espaço disponível.</p></details>
+          <details><summary>Funciona no celular?</summary><p>Sim. As prévias dos nove formatos se ajustam ao espaço disponível, preservando suas proporções. Para espaços menores, o formato 320×100 é uma opção compacta para celular.</p></details>
           <details><summary>Os resultados são atualizados automaticamente?</summary><p>Sim. As novas informações aparecem no widget sem que sua equipe precise editar números, atualizar gráficos ou republicar a página.</p></details>
           <details><summary>Quanto tempo leva para colocar o widget no ar?</summary><p>Em geral, menos de cinco minutos. Se o seu CMS aceita blocos HTML ou conteúdo incorporado, basta colar o código recebido e publicar.</p></details>
         </div>
       </div>
     </section>
     <section class="final-cta" aria-labelledby="cta-title">
-      <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-side"><div class="cta-signal" aria-hidden="true"><div class="cta-signal-head"><span class="cta-signal-live">Dados ao vivo</span><span>100% automático</span></div><div class="cta-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div></div>
+      <div class="container"><div class="cta-box reveal"><div><p class="eyebrow eyebrow--light">Sua cobertura começa agora</p><h2 id="cta-title">Mantenha o leitor informado sem fazê-lo sair do seu portal.</h2><p>Fale com um consultor, veja o melhor formato para a sua audiência e receba uma proposta para o seu domínio.</p></div><div class="cta-side"><div class="cta-signal" aria-hidden="true"><div class="cta-signal-head"><span class="cta-signal-live">Dados ao vivo</span><span>100% automático</span></div><div class="cta-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div class="cta-actions"><a class="button button--whatsapp" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Placar%20das%20Urnas%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg>Conversar no WhatsApp</a><small>Atendimento sem compromisso</small></div></div></div></div>
     </section>
   </main>
-  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Painel Eleitoral</span></a><span>© 2026 Painel Eleitoral. Todos os direitos reservados.</span><div class="footer-links"><a href="./previas.html">Prévias 2026</a><a href="./privacidade.html">Privacidade</a><a href="./termos.html">Termos de uso</a></div></div></footer>
-  <a class="preview-fab" href="./previas.html" aria-label="Ver prévias do Painel Eleitoral 2026"><span>Prévias 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  <a class="mobile-cta" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Painel%20Eleitoral%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg></a>
+  <footer><div class="container footer-inner"><a class="brand" href="#topo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Placar das Urnas</span></a><span>© 2026 Placar das Urnas. Todos os direitos reservados.</span><div class="footer-links"><a href="./previas.html">Prévias 2026</a><a href="./privacidade.html">Privacidade</a><a href="./termos.html">Termos de uso</a></div></div></footer>
+  <a class="preview-fab" href="./previas.html" aria-label="Ver prévias do Placar das Urnas 2026"><span>Prévias 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <a class="mobile-cta" href="https://wa.me/5567996521256?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Placar%20das%20Urnas%20e%20quero%20colocar%20a%20apura%C3%A7%C3%A3o%20eleitoral%20no%20meu%20portal." target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#icon-whatsapp"/></svg></a>
   <script>
+    // Render the full panel and panoramic banners at the available width.
+    // Only the fixed-size banner previews need proportional scaling.
+    const fitWidgetPreview = (preview) => {
+      if (preview.matches('.widget-frame, .live-widget--standard, .live-widget--panoramic, .live-widget--horizontal')) return;
+      const frame = preview.querySelector('iframe');
+      const width = Number(frame.getAttribute('width'));
+      const height = Number(frame.getAttribute('height'));
+      preview.style.width = `${width}px`;
+      const scale = Math.min(1, preview.clientWidth / width);
+      const borderHeight = preview.offsetHeight - preview.clientHeight;
+      preview.style.setProperty('--preview-scale', scale);
+      preview.style.height = `${height * scale + borderHeight}px`;
+    };
+    const widgetPreviews = [...document.querySelectorAll('.widget-frame, .live-widget')];
+    widgetPreviews.forEach(fitWidgetPreview);
+    if ('ResizeObserver' in window) {
+      const widgetResizeObserver = new ResizeObserver((entries) => {
+        entries.forEach((entry) => fitWidgetPreview(entry.target));
+      });
+      widgetPreviews.forEach((preview) => widgetResizeObserver.observe(preview));
+    } else {
+      window.addEventListener('resize', () => widgetPreviews.forEach(fitWidgetPreview));
+    }
     const header = document.querySelector('.site-header');
     const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
     updateHeader();

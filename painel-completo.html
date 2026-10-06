@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Placar das Urnas — Painel completo</title>
+  <style>
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body { display: grid; place-items: center; background: #fff; color: #526176; font: 14px system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <span role="status">Carregando apuração…</span>
+  <script>
+    const widgetUrl = 'https://apuracao.placardasurnas.com.br/2026/index.html?embed-modo=desktop';
+    const originalFetch = window.fetch.bind(window);
+
+    // The provider uses a local API on localhost; this preview uses its public API.
+    if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+      window.fetch = (input, options) => {
+        const url = new URL(input instanceof Request ? input.url : input, document.baseURI);
+        if (['localhost', '127.0.0.1'].includes(url.hostname) && url.port === '8788') {
+          const productionUrl = 'https://backend-eleicoes-2026.enzo-eleicoes-backend.workers.dev' + url.pathname + url.search;
+          input = input instanceof Request ? new Request(productionUrl, input) : productionUrl;
+        }
+        return originalFetch(input, options);
+      };
+    }
+
+    const previewStyles = `<style>
+      html, body { width: 100% !important; height: 100% !important; margin: 0 !important; }
+      body[data-widget="padrao"] { display: block !important; padding: 0 !important; overflow: hidden !important; background: #fff !important; }
+      body[data-widget="padrao"] .widget-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      .widget-container > :not(.lista-candidatos) { flex-shrink: 0 !important; }
+      body[data-widget="padrao"] .lista-candidatos {
+        flex: 1 1 0 !important;
+        min-height: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior-y: contain;
+        scrollbar-width: thin;
+        scrollbar-color: #9aaeb3 #f1f5f4;
+      }
+      .lista-candidatos::-webkit-scrollbar { width: 7px; }
+      .lista-candidatos::-webkit-scrollbar-track { background: #f1f5f4; }
+      .lista-candidatos::-webkit-scrollbar-thumb { border-radius: 8px; background: #9aaeb3; }
+    </style>`;
+
+    const loadWidget = async () => {
+      try {
+        const response = await originalFetch(widgetUrl);
+        if (!response.ok) throw new Error('Widget unavailable');
+        const markup = await response.text();
+        if (!markup.includes('class="widget-container"')) throw new Error('Invalid widget');
+        const page = markup
+          .replace(/<head\b[^>]*>/i, '$&<base href="https://apuracao.placardasurnas.com.br/2026/">')
+          .replace('id="lista-candidatos"', 'id="lista-candidatos" tabindex="0" aria-label="Lista de candidatos. Role para ver todos os resultados."')
+          .replace(/<\/head>/i, previewStyles + '$&');
+        document.open();
+        document.write(page);
+        document.close();
+      } catch {
+        window.location.replace(widgetUrl);
+      }
+    };
+    loadWidget();
+  </script>
+</body>
+</html>
