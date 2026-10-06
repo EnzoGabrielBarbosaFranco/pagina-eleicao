@@ -15,17 +15,23 @@
     const widgetUrl = 'https://apuracao.placardasurnas.com.br/2026/index.html?embed-modo=desktop';
     const originalFetch = window.fetch.bind(window);
 
-    // The provider uses a local API on localhost; this preview uses its public API.
-    if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-      window.fetch = (input, options) => {
-        const url = new URL(input instanceof Request ? input.url : input, document.baseURI);
-        if (['localhost', '127.0.0.1'].includes(url.hostname) && url.port === '8788') {
-          const productionUrl = 'https://backend-eleicoes-2026.enzo-eleicoes-backend.workers.dev' + url.pathname + url.search;
-          input = input instanceof Request ? new Request(productionUrl, input) : productionUrl;
-        }
-        return originalFetch(input, options);
-      };
-    }
+    const apiOrigin = 'https://backend-eleicoes-2026.enzo-eleicoes-backend.workers.dev';
+    const localPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+    // Production reads data through this site's two public API routes, avoiding
+    // a cross-origin request from www.placardasurnas.com.br to the provider.
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : input, document.baseURI);
+      const localApi = ['localhost', '127.0.0.1'].includes(url.hostname) && url.port === '8788';
+      const dataEndpoint = ['/api/status-eleicao', '/api/apuracao'].includes(url.pathname);
+      if ((url.origin === apiOrigin || localApi) && dataEndpoint) {
+        const targetUrl = localPreview
+          ? apiOrigin + url.pathname + url.search
+          : window.location.origin + '/api/eleicoes' + url.pathname.slice(4) + url.search;
+        input = input instanceof Request ? new Request(targetUrl, input) : targetUrl;
+      }
+      return originalFetch(input, options);
+    };
 
     const previewStyles = `<style>
       html, body { width: 100% !important; height: 100% !important; margin: 0 !important; }

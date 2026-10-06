@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/eleicoes/status-eleicao",
+      "destination": "https://backend-eleicoes-2026.enzo-eleicoes-backend.workers.dev/api/status-eleicao"
+    },
+    {
+      "source": "/api/eleicoes/apuracao",
+      "destination": "https://backend-eleicoes-2026.enzo-eleicoes-backend.workers.dev/api/apuracao"
+    }
+  ]
+}
